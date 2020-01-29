@@ -121,6 +121,9 @@
 
         //GET NORTH STATION RESPONSE
         let response_north = await fetch(api_url_north_station);
+
+        console.log(response_north);
+
         let northStation_data = await response_north.json();
 
         console.log(northStation_data);
@@ -129,6 +132,7 @@
         today();
         startTime();
 
+        let output = '';
         for(let i =0; i < northStation_data.data.length; i++) {
 
         
@@ -138,24 +142,25 @@
             //DESTINATION ID FROM ROUTE
             let destination = northStation_data.data[i].relationships.route.data.id;
             // TRAIN TRACK #
-            let train_track_num = northStation_data.data[i].relationships.vehicle.data.id;
+            let train_track_num = northStation_data.data[i].relationships.vehicle.data ? northStation_data.data[i].relationships.vehicle.data.id : '';
             // STATUS
             let stat = northStation_data.data[i].attributes.status;              
         
             // OUTPUT
-          
-            let output = document.getElementById('display');
-            
-            output.innerHTML =
-            '<span>' + departure + '</span>' + 
-            '<span>' + destination +'</span>' + 
-            '<span>' + train_track_num  +'</span>' + 
-            '<span>' + stat +'</span>';
+            output += '<div>' +
+              '<span>' + departure + '</span>' + 
+              '<span>' + destination +'</span>' + 
+              '<span>' + train_track_num  +'</span>' + 
+              '<span>' + stat +'</span>' +
+            '</div>';
 
         }  
+
+        document.getElementById('display').innerHTML = output;
          
       }
 
+      console.log('here');
       getMBTA_data();
             
     </script>
