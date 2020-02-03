@@ -12,8 +12,8 @@
 
 .container table{
     width: 600px;
-    margin: 0 auto;
-    padding: 10px auto;
+    margin: auto;
+    padding: auto;
     background-color: rgb(174, 186, 197);
 }
 

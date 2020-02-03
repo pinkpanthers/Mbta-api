@@ -88,6 +88,7 @@
             let destination = northStation_data.data[i].relationships.route.data.id;
             // TRAIN TRACK #
             let train_track_num = northStation_data.data[i].relationships.vehicle.data ? northStation_data.data[i].relationships.vehicle.data.id : 'TBD';
+            let ttn = train_track_num.replace(/\D/g, "");
             // STATUS
             let stat = northStation_data.data[i].attributes.status ? northStation_data.data[i].attributes.status : 'TBD';              
         
@@ -96,7 +97,7 @@
 
               '<td>' + departure + '</td>' + 
               '<td>' + destination +'</td>' + 
-              '<td>' + train_track_num  +'</td>' + 
+              '<td>' + ttn  +'</td>' + 
               '<td>' + stat +'</td>' +
 
             '</table></div>';
@@ -123,6 +124,7 @@
             let destination = southStation_data.data[i].relationships.route.data.id;
             // TRAIN TRACK #
             let train_track_num = southStation_data.data[i].relationships.vehicle.data ? southStation_data.data[i].relationships.vehicle.data.id : 'TBD';
+            let ttn = train_track_num.replace(/\D/g, "");
             // STATUS
             let stat = southStation_data.data[i].attributes.status ? southStation_data.data[i].attributes.status : 'TBD';              
 
@@ -131,7 +133,7 @@
 
               '<td>' + departure + '</td>' + 
               '<td>' + destination +'</td>' + 
-              '<td>' + train_track_num  +'</td>' + 
+              '<td>' + ttn  +'</td>' + 
               '<td>' + stat +'</td>' +
 
             '</table></div>';
@@ -145,11 +147,13 @@
 
       console.log('here');
       getMBTA_data();
+      
 
     //   function autoRefresh(rate) {
     //     setTimeout("location.reload(true);", rate);
     //   }
-    //   window.onload = reload(autoRefresh(100000));
+
+    //   window.onload = reload(autoRefresh(60000));
 
     //   function reload(){
     //     var container = document.getElementById("myTable");
